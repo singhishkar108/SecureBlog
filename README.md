@@ -58,40 +58,15 @@ To successfully compile and run this project, you must have the following instal
 - **Disk Space**: Minimum 200MB free space
 
 - **Frameworks and Core Technologies**
-
   - Backend Runtime: Node.js (Version not explicitly listed, but the dependencies suggest a modern release, likely v18 or newer).
   - Backend Web Framework: Express: `^5.1.0`
   - Frontend UI Library: React: `^19.1.0`
   - Frontend Build Tool: Vite: `^7.0.4`
   - Database ODM: Mongoose: `^8.17.0` (backend) / `^8.16.5` (backend)
 
-- **Dependencies**
-
-  - **Backend Dependencies (`secureblog-backend/package.json`)**
-  - These packages are required for the server-side API, database, and security features:
-
-    - axios: `^1.11.0`
-    - bcrypt: `^6.0.0` (For password hashing and security)
-    - cors: `^2.8.5` (For enabling cross-origin requests)
-    - dotenv: `^17.2.1` (For environment variables)
-    - express: `^5.1.0` (The core web framework)
-    - express-rate-limit: `^8.1.0` (For rate limiting/brute-force protection)
-    - express-validator: `^7.2.1` (For data validation)
-    - helmet: `^8.1.0` (For setting security-related HTTP headers)
-    - jsonwebtoken: `^9.0.2` (For user authentication/JWT generation)
-    - mongoose: `^8.16.5` (For MongoDB interaction)
-    - react-router-dom: `^7.7.1`
-
-  - **Frontend Dependencies (`secureblog-frontend/package.json`)**
-  - These packages are required for the client-side user interface:
-    - axios: `^1.11.0` (For API requests to the backend)
-    - react: `^19.1.0` (The core UI library)
-    - react-dom: `^19.1.0` (The entry point for browser DOM manipulation)
-    - react-router-dom: `^7.8.0` (For client-side routing)
-
-> ⚠️ **Note**: The versions listed are the minimum version plus acceptable updates, as indicated by the `^` symbol in the `package.json` files. For a deterministic installation, the exact locked versions are in the `package-lock.json` file.
-
 ### Project Configurations
+
+#### Environment Configuration File
 
 This project uses environment variables to manage configuration for both the backend and the frontend.
 
@@ -107,6 +82,106 @@ JWT_SECRET=your_jwt_secret_here
 
 ```console
 VITE_API_URL=your_backend_api_url_here
+```
+
+#### Manifest Files
+
+> ⚠️ **Note**: The versions listed are the minimum version plus acceptable updates, as indicated by the `^` symbol in the `package.json` files. For a deterministic installation, the exact locked versions are in the `package-lock.json` file.
+
+`SecureBlog\package.json`
+
+```json
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.0"
+  }
+}
+```
+
+`secureblog-backend\package.json`
+
+```json
+{
+  "name": "secureblog-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.5",
+    "react-router-dom": "^7.7.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "jest": "^30.1.3",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
+  }
+}
+```
+
+`secureblog-frontend\package.json`
+
+```json
+{
+  "name": "secureblog-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.8.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.0.4"
+  }
+}
 ```
 
 ### Installation
@@ -365,6 +440,10 @@ This SecureBlog project is architected as a **MERN Stack Application** with a he
 
 The architecture follows a clear **separation of concerns**, dividing the application into three major layers: the **Client**, the **API**, and the **Database**.
 
+<p align="center">
+  <img src="Assets/mern.png" alt="Mern Stack Architecture Diagram">
+</p>
+
 #### 1. The Architectural Style: Decoupled Monorepo
 
 - **Decoupled**: The **Frontend** and **Backend** are two completely **separate, independent codebases**. The Frontend communicates with the Backend only via secure **API calls (HTTPS)**.
@@ -501,6 +580,7 @@ Once a user successfully logs in, the API generates a **JSON Web Token (JWT)** u
 - **DhineshKumar Thirupathi, 2024. “A Comprehensive Guide to ESLint: From Basics to Advanced.”** [online] _[medium.com](https://medium.com/@dhidroid/a-comprehensive-guide-to-eslint-from-basics-to-advanced-4defco5800e0)_ [Accessed 15 August 2025].
 - **Docker Docs, n.d. “Overview of Docker Compose.”** [online] _[docs.docker.com](https://docs.docker.com/compose/)_ [Accessed 31 August 2025].
 - **ESLint, n.d. “ESLint: Pluggable JavaScript linter.”** [online] _[eslint.org](https://eslint.org/)_ [Accessed 5 September 2025].
+- **GeeksforGeeks, 2025. “MERN Stack.”** [online] _[geeksforgeeks.org](https://www.geeksforgeeks.org/mern/understand-mern-stack/)_ [Accessed 16 December 2025].
 - **GeeksforGeeks, 2025. “Testing with Jest.”** [online] _[geeksforgeeks.org](https://www.geeksforgeeks.org/javascript/testing-with-jest/)_ [Accessed 10 September 2025].
 - **Juan España and ByteHide, 2024. “Top 10 Application Security Vulnerabilities in 2024.”** [online] _[medium.com](https://medium.com/bytehide/top-10-application-security-vulnerabilities-in-2024-bf5c9cc71cf2)_ [Accessed 15 October 2025].
 - **Mozilla Developers, n.d. “Content Security Policy (CSP).”** [online] _[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP)_ [Accessed 25 September 2025].
@@ -511,4 +591,3 @@ Once a user successfully logs in, the API generates a **JSON Web Token (JWT)** u
 - **YouTube and The Net Ninja, 2020. “MongoDB & Mongoose (with Express).”** [online] _[youtu.be](https://youtu.be/DQdB7wFEygo?si=B4A-0d1EoTEbWOEI)_ [Accessed 28 October 2025].
 - **YouTube and The Net Ninja, 2020. “Node.js Tutorial for Beginners Playlist.”** [online] _[youtube.com](https://youtube.com/playlist?list=PL4cUxeGkcC9iJ_KkrkBZWZRHVwnzLIoUE&si=QWCWnNpqSzkr8nlC)_ [Accessed 30 October 2025].
 - **YouTube and The Net Ninja, 2020. “What is an API? - Node.js.”** [online] _[youtu.be](https://youtu.be/Gjnup-PuquQ?si=IjAxAf_ibhMyq_gb)_ [Accessed 31 October 2025].
-
