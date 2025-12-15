@@ -137,3 +137,20 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# START PROJECT-SPECIFIC ADDITIONS
+
+# 1. Frontend Build Output (Vite)
+/secureblog-frontend/dist
+
+# 2. VS Code Configuration (.vscode folder)
+.vscode/
+
+# 3. Jest/Testing Configuration (secureblog-backend/tests)
+/secureblog-backend/test-results
+
+# 4. Global Configuration files
+# Vite Cache
+.vite/
+
+# END PROJECT-SPECIFIC ADDITIONS
