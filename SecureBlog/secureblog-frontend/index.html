@@ -1,0 +1,44 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html> -->
+
+// Modified to include intentional CSP violations for testing
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+
+    <!-- INTENTIONAL VIOLATION: Inline style (CSP blocks 'unsafe-inline') -->
+    <style>
+      body { background-color: #f0e68c; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- INTENTIONAL VIOLATION: Inline script (CSP blocks 'unsafe-inline') -->
+    <script>
+      console.log("Inline script should be blocked by CSP.");
+      alert("This inline script violates CSP!");
+    </script>
+
+    <!-- INTENTIONAL VIOLATION: External script from CDN (blocked if not whitelisted) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Normal React entry point (allowed by CSP) -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
