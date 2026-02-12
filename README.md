@@ -21,7 +21,7 @@
 
 ## ✨ 1. Introduction
 
-The **Secure Blog** is a **full-stack blog application** built on the **MERN stack (MongoDB, Express, React, Node.js)**. It serves as a practical vehicle for applying core concepts of **Application Development Security** in a real-world context. The project is specifically designed to implement and demonstrate **web application security principles**, focusing on the secure handling of user identities and user-generated content. Key security areas covered include building secure authentication and session handling, enforcing robust access control, and mitigating common web threats to protect against risks like content injection and unauthorized edits. By the end, the application showcases a strong foundation in security-first development and DevSecOps practices.
+The **Secure Blog** is a **back-end** heavy **blog application** built on the **MERN stack (MongoDB, Express, React, Node.js)**. It serves as a practical vehicle for applying core concepts of **Application Development Security** in a real-world context. The project is specifically designed to implement and demonstrate **web application security principles**, focusing on the secure handling of user identities and user-generated content. Key security areas covered include building secure authentication and session handling, enforcing robust access control, and mitigating common web threats to protect against risks like content injection and unauthorized edits. By the end, the application showcases a strong foundation in security-first development and DevSecOps practices.
 
 ### Highlighted Technical Features ✨
 
